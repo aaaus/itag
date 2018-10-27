@@ -310,6 +310,7 @@ public class MainActivity extends Activity implements LeScanner.LeScannerListene
             }
             ITagsDb.save(MainActivity.this);
             ITagsDb.notifyChange();
+            ITagApplication.faColorITag();
             return true;
         });
         popupMenu.show();
@@ -320,6 +321,10 @@ public class MainActivity extends Activity implements LeScanner.LeScannerListene
         device.linked=!device.linked;
         ITagsDb.save(MainActivity.this);
         ITagsDb.notifyChange();
+        if (device.linked)
+            ITagApplication.faUnmuteTag();
+        else
+            ITagApplication.faMuteTag();
         if (mITagsServiceBound && mITagsService.isSound() && !device.linked){
             mITagsService.stopSound();
         }

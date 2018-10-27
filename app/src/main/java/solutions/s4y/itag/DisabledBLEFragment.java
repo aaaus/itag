@@ -28,4 +28,11 @@ public class DisabledBLEFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_ble_disabled, container, false);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        ITagApplication.faBluetoothDisable();
+    }
+
+
 }

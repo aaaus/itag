@@ -82,6 +82,7 @@ public class LeScanFragment extends Fragment implements LeScanner.LeScannerListe
     @Override
     public void onResume() {
         super.onResume();
+        ITagApplication.faScanView(ITagsDb.getDevices(getActivity()).size()>0);
         updateResultsList();
         LeScanner.addListener(this);
     }

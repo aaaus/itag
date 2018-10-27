@@ -186,6 +186,7 @@ public class ITagsFragment extends Fragment implements ITagsDb.DbListener, ITagG
         if (BuildConfig.DEBUG) {
             Log.d(LT, "onResume");
         }
+        ITagApplication.faITagsView(ITagsDb.getDevices(getActivity()).size());
         startRssi();
         setupTags((ViewGroup) Objects.requireNonNull(getView()));
         MainActivity.addServiceBoundListener(this);

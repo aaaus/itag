@@ -3,6 +3,7 @@ package solutions.s4y.itag;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,4 +27,9 @@ public class NoBLEFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_no_ble, container, false);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        ITagApplication.faNoBluetooth();
+    }
 }

@@ -195,6 +195,7 @@ public class ITagGatt {
                     mIsConnected = false;
                 }
                 notifyITagChanged();
+                ITagApplication.faITagLost(mIsError);
             }
         }
 
@@ -277,6 +278,7 @@ public class ITagGatt {
                 mIsFindingITag = false;
             }
             notifyITagChanged();
+            ITagApplication.faITagFound();
         }
 
         private int mClicksCount = 0;
@@ -300,6 +302,7 @@ public class ITagGatt {
                 mHandler.removeCallbacks(mWaitForDoubleClick);
                 mClicksCount = 0;
                 notifyITagDoubleClicked();
+                ITagApplication.faFindPhone();
             }
         }
 
@@ -481,6 +484,7 @@ public class ITagGatt {
         if (mServiceImmediateAlert == null) {
             // TODO: replace with string resource
             ITagApplication.handleError(new Exception("The connected device does not seem to be iTag, sorry"));
+            ITagApplication.faNotITag();
             return;
         }
 
@@ -488,6 +492,7 @@ public class ITagGatt {
         mIsFindingITag = false;
         mIsStoppingITagFind = false;
         writeCharacteristicAlertLevel(mServiceImmediateAlert, HIGH_ALERT);
+        ITagApplication.faFindITag();
     }
 
     public void stopFindITag() {

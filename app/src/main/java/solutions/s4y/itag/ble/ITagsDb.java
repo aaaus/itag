@@ -224,6 +224,7 @@ public class ITagsDb {
             save(context);
             notifyAdd(d);
             notifyChange();
+            ITagApplication.faRememberITag();
         }
     }
 
@@ -234,6 +235,7 @@ public class ITagsDb {
             save(context);
             notifyRemove(device);
             notifyChange();
+            ITagApplication.faForgetITag();
         }
     }
 
