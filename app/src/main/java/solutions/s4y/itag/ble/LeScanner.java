@@ -112,12 +112,7 @@ public final class LeScanner {
 
             if (needNotify) {
                 // https://github.com/s4ysolutions/itag/issues/9
-                sHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        notifyNewDeviceScanned(result);
-                    }
-                },600);
+                sHandler.postDelayed(() -> notifyNewDeviceScanned(result),600);
             }
         }
     };
@@ -163,9 +158,7 @@ public final class LeScanner {
         };
         handler.postDelayed(run1sec,1000);
 
-        handler.postDelayed(() -> {
-            stopScan(bluetoothAdapter);
-        }, TIMEOUT * 1000);
+        handler.postDelayed(() -> stopScan(bluetoothAdapter), TIMEOUT * 1000);
 
 
         bluetoothAdapter.startLeScan(sLeScanCallback);

@@ -444,12 +444,7 @@ public class ITagGatt {
         mGatt.close();
     }
 
-    private Runnable mForceDisconnect = new Runnable() {
-        @Override
-        public void run() {
-            endConnection();
-        }
-    };
+    private Runnable mForceDisconnect = this::endConnection;
 
     public void disconnect() {
         if (BuildConfig.DEBUG) {
