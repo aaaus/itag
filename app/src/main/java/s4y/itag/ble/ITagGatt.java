@@ -11,12 +11,11 @@ import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -290,13 +289,13 @@ public class ITagGatt {
             mIsTransmitting = false;
             if (mIsStartingITagFind) {
                 if (value == NO_ALERT) {
-                    Crashlytics.logException(new Exception("onCharacteristicWrite mIsStartingITagFind but value=0"));
+                    ITagApplication.handleError(new Exception("onCharacteristicWrite mIsStartingITagFind but value=0"));
                 }
                 mIsStartingITagFind = false;
                 mIsFindingITag = true;
             } else if (mIsStoppingITagFind) {
                 if (value != NO_ALERT) {
-                    Crashlytics.logException(new Exception("onCharacteristicWrite mIsStoppingITagFind but value!=0"));
+                    ITagApplication.handleError(new Exception("onCharacteristicWrite mIsStoppingITagFind but value!=0"));
                 }
                 mIsStoppingITagFind = false;
                 mIsFindingITag = false;
